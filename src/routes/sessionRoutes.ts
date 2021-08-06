@@ -2,28 +2,29 @@ import express from 'express';
 import passport from 'passport';
 
 
-import { createSession } from '../controllers/sessionController'
+import { createSession, getSession , updateSession, deleteSession} from '../controllers/sessionController'
 // import  loginController from '../controllers/loginController'
 
 
 const router = express.Router();
 
 router.post(
-    '/create', passport.authenticate('jwt', { session: false }), createSession
+    '/createsession', passport.authenticate('jwt', { session: false }), createSession
 )
 
-// router.post(
-//     '/login', loginController
-// )
+router.get(
+    '/getsession/:id', passport.authenticate('jwt', { session: false }), getSession
+)
+router.put(
+    '/updatesession/:id', passport.authenticate('jwt', { session: false }), updateSession
+)
+router.delete(
+    '/deletesession/:id', passport.authenticate('jwt', { session: false }), deleteSession
+)
 
 export default router;
 
 /*****
- * /users/createsession
- * /users/getsession
- * /users/deletesession
- * /users/updatesession
- *
  *
  * /admin/get_all
  * /admin/get_one

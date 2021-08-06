@@ -26,7 +26,7 @@ const schema = new Schema<User>({
     password: { type: String, required: true, select: false },
     role: {
         type: String,
-        enum: ["client", "staff", "admin"],
+        enum: ["client","admin"],
         default: "client",
     },
     dateCreated: {
