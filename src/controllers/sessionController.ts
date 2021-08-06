@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 //@ts-ignore
 import decoder from 'jwt-decode';
-import { createSessionService, deleteSessionService, getSessionService, updateSessionService } from '../services/sessionService';
+import {
+    createSessionService, deleteSessionService, getSessionService,
+    updateSessionService, getAllSessionService
+} from '../services/sessionService';
 
 let createSession = async (req: Request, res: Response) => {
     try {
@@ -16,12 +19,14 @@ let createSession = async (req: Request, res: Response) => {
 }
 
 let getSession = getSessionService;
+let getAllSession = getAllSessionService;
 let updateSession = updateSessionService;
 let deleteSession = deleteSessionService;
 
 export {
     createSession,
     getSession,
+    getAllSession,
     updateSession,
     deleteSession
 }

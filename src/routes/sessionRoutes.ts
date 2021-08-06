@@ -1,34 +1,23 @@
 import express from 'express';
 import passport from 'passport';
 
-
-import { createSession, getSession , updateSession, deleteSession} from '../controllers/sessionController'
-// import  loginController from '../controllers/loginController'
-
+import {checkUser} from '../util/checkRole';
+import { createSession, getSession, updateSession, deleteSession } from '../controllers/sessionController';
 
 const router = express.Router();
 
 router.post(
-    '/createsession', passport.authenticate('jwt', { session: false }), createSession
+    '/create', passport.authenticate('jwt', { session: false }), checkUser, createSession
 )
 
 router.get(
-    '/getsession/:id', passport.authenticate('jwt', { session: false }), getSession
+    '/get/:id', passport.authenticate('jwt', { session: false }), checkUser, getSession
 )
 router.put(
-    '/updatesession/:id', passport.authenticate('jwt', { session: false }), updateSession
+    '/update/:id', passport.authenticate('jwt', { session: false }),checkUser,  updateSession
 )
 router.delete(
-    '/deletesession/:id', passport.authenticate('jwt', { session: false }), deleteSession
+    '/delete/:id', passport.authenticate('jwt', { session: false }), checkUser,deleteSession
 )
 
 export default router;
-
-/*****
- *
- * /admin/get_all
- * /admin/get_one
- * /admin/delete_one
- * /admin/update_one
- *
- */

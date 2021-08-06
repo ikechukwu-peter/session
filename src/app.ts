@@ -8,6 +8,7 @@ import passport from 'passport';
 import cors from 'cors'
 import userRouter from './routes/userRoutes'
 import sessionRouter from './routes/sessionRoutes';
+import adminRouter from './routes/adminRoutes';
 import authenticate from './config/passport';
 
 const app: Application = express();
@@ -38,8 +39,8 @@ app.use(cors());
 
 // 3) ROUTES
 app.use("/users", userRouter);
-app.use("/api", sessionRouter);
-//app.use("/admin", adminRouter)
+app.use("/session", sessionRouter);
+app.use("/admin", adminRouter)
 
 //Handle all undefined route hit by the client
 app.all("*", (req: Request, res: Response, next: NextFunction) => {

@@ -1,5 +1,5 @@
 import sessionModel from '../models/sessionModel';
-import {getOne, deleteOne, updateOne} from '../util/handler'
+import { getAll, getOne, deleteOne, updateOne } from '../util/handler'
 
 let createSessionService = async (sessionData: any, userId: any) => {
     const { title, body, date } = sessionData;
@@ -13,13 +13,15 @@ let createSessionService = async (sessionData: any, userId: any) => {
     }
 }
 
-let getSessionService = getOne(sessionModel)
-let updateSessionService = updateOne(sessionModel)
-let deleteSessionService = deleteOne(sessionModel)
+let getSessionService = getOne(sessionModel);
+let getAllSessionService = getAll(sessionModel);
+let updateSessionService = updateOne(sessionModel);
+let deleteSessionService = deleteOne(sessionModel);
 
 export {
     createSessionService,
     getSessionService,
+    getAllSessionService,
     updateSessionService,
     deleteSessionService
 }
