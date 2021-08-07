@@ -12,7 +12,6 @@ import adminRouter from './routes/adminRoutes';
 import authenticate from './config/passport';
 
 const app: Application = express();
-
 // Set security HTTP headers
 app.use(helmet());
 
