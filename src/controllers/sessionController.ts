@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-//@ts-ignore
-import decoder from 'jwt-decode';
+
 import {
     createSessionService, deleteSessionService, getSessionService,
     updateSessionService, getAllSessionService
@@ -8,10 +7,8 @@ import {
 
 let createSession = async (req: Request, res: Response) => {
     try {
-        const token = req.headers.authorization?.split(" ")[1];
-        let data = decoder(token!);
-        const session = await createSessionService(req.body, data)
-        return res.status(201).json(session)
+        const sessionData = await createSessionService(req.body, req.user)
+    return res.status(201).json(sessionData)
     } catch (err) {
         return res.status(400).json(err)
     }
