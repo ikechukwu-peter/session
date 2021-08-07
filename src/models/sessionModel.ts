@@ -1,10 +1,6 @@
 import { Schema, model, Types } from 'mongoose';
 import slug from 'slug'
 
-/**
- * 
- * @TODO Make slug update on change
- */
 // 1. Create an interface representing a document in MongoDB.
 interface Session {
     title: string;
@@ -48,14 +44,12 @@ const schema = new Schema<Session>({
 )
 
 schema.index({ slug: 1 });
+
 schema.pre('save', function (next) {
     this.slug = slug(this.title, { lower: true });
     next();
 });
-schema.pre(/^findByIdAndUpdate/, function (next) {
-    this.slug = slug(this.title, { lower: true });
-    next();
-})
+
 schema.pre(/^find/, function (next) {
     this.populate({
         path: 'user',
