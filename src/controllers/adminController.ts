@@ -6,6 +6,10 @@ import {
     deleteUserService
 } from '../services/adminService';
 
+/**
+ * Admin can do more than is here.
+ * Admin can facilitate session too check the admin routes.
+ */
 
 let getUser = getUserService;
 let getUsers = getUsersService;
@@ -19,8 +23,3 @@ export {
     deleteUser,
 }
 
-/**
- * 
- * Admin can do more than is here.
- * Admin can facilitate session too check the admin routes.
- */
