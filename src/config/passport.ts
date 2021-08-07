@@ -1,3 +1,4 @@
+import {Request} from 'express';
 import { Strategy, ExtractJwt } from 'passport-jwt'
 import mongoose from 'mongoose'
 
@@ -18,7 +19,6 @@ export default (passport: any) => {
         new Strategy(options, async (jwt_payload: any, done: any) => {
             try {
                 const user = await User.findById(jwt_payload.id);
-
                 if (user) {
                     return done(null, user);
                 }
