@@ -1,32 +1,23 @@
 import express from 'express';
-
-
-import  registerController from '../controllers/registerController'
-import  loginController from '../controllers/loginController'
-
+import passport from 'passport';
+import { signup, login, resetPassword, forgotPassword } from '../controllers/authController';
 
 const router = express.Router();
 
 router.post(
-    '/register', registerController
+    '/register', signup
 )
 
 router.post(
-    '/login', loginController
+    '/login', login
+)
+
+router.patch(
+    '/resetpassword', passport.authenticate('jwt', {session: false}), resetPassword
+)
+
+router.patch(
+    '/forgotpassword', forgotPassword
 )
 
 export default router;
-
-/*****
- * /users/createsession
- * /users/getsession
- * /users/deletesession
- * /users/updatesession
- * 
- * 
- * /admin/get_all
- * /admin/get_one
- * /admin/delete_one
- * /admin/update_one
- * 
- */
