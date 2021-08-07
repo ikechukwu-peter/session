@@ -84,6 +84,7 @@ let forgotPasswordService = async (email: string) => {
                 "There is no user with this email address",
             )
         }
+        user.password = password;
         await user.save({ validateBeforeSave: false });
         const message = `You have just requested to change your password , here is your password ${password}. \nIf you didn't request for a password change, your account might be compromised, contact the admin.`;
         const html = `<strong>You have just requested to change your password, here is your password ${password}. \n <br /> If you didn't request for a password change, your account might be compromised, contact the admin.</strong>`;
