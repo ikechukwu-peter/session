@@ -1,11 +1,9 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model , Types} from 'mongoose';
 import bcrypt from 'bcryptjs'
-//import crypto from 'crypto';
-// @TODO: Request passwod routes for chnaging password
 
 // 1. Create an interface representing a document in MongoDB.
 interface User {
-    username: string;
+    username: string,
     email: string,
     password: string | undefined
     role?: string,

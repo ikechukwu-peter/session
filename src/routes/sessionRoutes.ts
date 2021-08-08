@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 
-import {checkUser} from '../util/checkRole';
+import {checkUser, checkUserSession} from '../util/checkRole';
 import { createSession, getSession, updateSession, deleteSession } from '../controllers/sessionController';
 
 const router = express.Router();
@@ -11,13 +11,13 @@ router.post(
 )
 
 router.get(
-    '/get/:id', passport.authenticate('jwt', { session: false }), checkUser, getSession
+    '/get/:id', passport.authenticate('jwt', { session: false }), checkUser, checkUserSession, getSession
 )
 router.put(
-    '/update/:id', passport.authenticate('jwt', { session: false }),checkUser,  updateSession
+    '/update/:id', passport.authenticate('jwt', { session: false }),checkUser, checkUserSession, updateSession
 )
 router.delete(
-    '/delete/:id', passport.authenticate('jwt', { session: false }), checkUser,deleteSession
+    '/delete/:id', passport.authenticate('jwt', { session: false }), checkUser,checkUserSession,deleteSession
 )
 
 export default router;

@@ -13,7 +13,7 @@ const signToken = (id: string) => {
 let registerService = async (userData: any) => {
     const { email, username, role } = userData;
     const password: string = random(4)
-    
+
     try {
         if (!email || !username) {
             return Promise.reject('Please provide username and email')
@@ -37,6 +37,11 @@ let registerService = async (userData: any) => {
         return Promise.resolve("Please check your email to see your password, use the code to login")
     }
     catch (err) {
+        if (err.code === 11000) {
+            return Promise.reject(
+                'Email is taken up'
+            )
+        }
         return Promise.reject({
             from: 'Signup',
             err
@@ -107,13 +112,13 @@ let forgotPasswordService = async (email: string) => {
 }
 
 let resetPasswordService = async (password: string, userData: any) => {
-    const {email} = userData
+    const { email } = userData
 
     if (!password) {
         return Promise.reject('Please provide your password')
     }
     // 2) Check if user exists && password is correct
-    const user = await userModel.findOne({email: email}).select("+password");
+    const user = await userModel.findOne({ email: email }).select("+password");
 
     if (user === null || !(await user.comparePassword(password, user.password))) {
         return Promise.reject('Incorrect  password')
@@ -123,16 +128,16 @@ let resetPasswordService = async (password: string, userData: any) => {
     await user.save()
 
     const message = `Your password was resetted , here is your password ${newPassword}. \nIf you didn't request a reset, please contact the admin.`;
-        const html = `<strong>Your password was resetted, here is your password ${newPassword}. \n <br /> If you didn't request a reset, please contact the admin.</strong>`;
+    const html = `<strong>Your password was resetted, here is your password ${newPassword}. \n <br /> If you didn't request a reset, please contact the admin.</strong>`;
 
-        //email sent here
-        await sendEmail({
-            email,
-            subject: " Session, Here is Your Password after Reset",
-            html,
-            message,
-        });
-        return Promise.resolve("Please check your email to see your password, use the password to login")
+    //email sent here
+    await sendEmail({
+        email,
+        subject: " Session, Here is Your Password after Reset",
+        html,
+        message,
+    });
+    return Promise.resolve("Please check your email to see your password, use the password to login")
 }
 
 export { loginService, registerService, forgotPasswordService, resetPasswordService }
