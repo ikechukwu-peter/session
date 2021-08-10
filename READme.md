@@ -1,7 +1,4 @@
 
-## Session
-
-
 # [Session](https://sessionhost.herokuapp.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ikechukwu-peter/session/blob/main/LICENSE)
 
 ## Session
