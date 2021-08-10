@@ -1,5 +1,5 @@
 ## Session
-Session is an API for booking a session with an imaginary creature.
+Session is an API for hosterapy.
 
 #### Installation
 Clone the github repository and run yarn add to install all packages.
