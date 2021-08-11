@@ -5,6 +5,9 @@ let createSessionService = async (sessionData: any, userObject: any) => {
     const { title, body, date } = sessionData;
     const user = userObject.id
     try {
+        if(!title || !body || !date){
+            return Promise.reject('Title, body and date is compulsory')
+        }
         const session = await sessionModel.create({ user, title, body, date })
         return Promise.resolve(session)
     } catch (err) {
