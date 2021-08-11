@@ -1,6 +1,33 @@
+import cluster from 'cluster';
+import {cpus} from 'os'
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 
+dotenv.config({ path: './.env' });
+
+//initializing app
+import app from './app';
+
+const numWorkers = cpus().length;
+
+if(cluster.isPrimary) {
+
+    console.log('Master cluster setting up ' + numWorkers + ' workers...');
+
+    for(let i = 0; i < numWorkers; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('online', function(worker) {
+        console.log('Worker ' + worker.process.pid + ' is online');
+    });
+
+    cluster.on('exit', function(worker, code, signal) {
+        console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+        console.log('Starting a new worker');
+        cluster.fork();
+    });
+} else {
 
 //Handle uncaughtExceptions
 process.on("uncaughtException", (err) => {
@@ -9,10 +36,6 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
- dotenv.config({ path: './.env' });
-
-//initializing app
-import app from './app';
 
 //Connecting to mongoose
 mongoose
@@ -41,3 +64,4 @@ process.on('unhandledRejection', err=> {
   });
 });
 
+}
