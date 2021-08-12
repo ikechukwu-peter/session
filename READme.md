@@ -6,7 +6,7 @@ Session is an API for hosterapy.
 
 ## Installation
 
-Clone the github repository and run yarn add to install all packages. Then **run yarn run dev**, to start local server, you will have to provide your own **ENV** variables. 
+Clone the github repository and run yarn install to install all packages. Then **run yarn run dev**, to start local server, you will have to provide your own **ENV** variables. 
 
 ## Documentation
 
