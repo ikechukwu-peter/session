@@ -15,7 +15,7 @@ interface User {
 
 // 2. Create a Schema corresponding to the document interface.
 const schema = new Schema<User>({
-    username: { type: String, required: true },
+    username: { type: String, required: true, lower: true },
     email: {
         type: String, required: true, unique: true,
         lowercase: true,
