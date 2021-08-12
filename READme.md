@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-## Session
-=======
 
 # [Session](https://sessionhost.herokuapp.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ikechukwu-peter/session/blob/main/LICENSE)
 
 ## Session
-
->>>>>>> 3d0c442a056dd97bfb7e8c114b75d23074b5f7d7
 Session is an API for hosterapy.
 
 ## Installation
