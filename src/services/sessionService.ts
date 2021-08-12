@@ -2,13 +2,13 @@ import sessionModel from '../models/sessionModel';
 import { getAll, getOne, deleteOne, updateOne } from '../util/handler'
 
 let createSessionService = async (sessionData: any, userObject: any) => {
-    const { title, body, date } = sessionData;
+    const { title, body, date, time } = sessionData;
     const user = userObject.id
     try {
-        if(!title || !body || !date){
-            return Promise.reject('Title, body and date is compulsory')
+        if(!title || !body || !date || !time){
+            return Promise.reject('Title, body, date and time is compulsory')
         }
-        const session = await sessionModel.create({ user, title, body, date })
+        const session = await sessionModel.create({ user, title, body, date, time })
         return Promise.resolve(session)
     } catch (err) {
         return Promise.reject(err)
