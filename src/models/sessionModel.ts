@@ -1,5 +1,4 @@
 import { Schema, model, Types } from 'mongoose';
-import slug from 'slug'
 
 // 1. Create an interface representing a document in MongoDB.
 interface Session {
@@ -8,6 +7,7 @@ interface Session {
     body: string,
     user: Types.ObjectId,
     date: Date,
+    time: string,
     dateCreated?: Date,
 
 }
@@ -31,7 +31,8 @@ const schema = new Schema<Session>({
         minlength: [50, 'A session title must have more or equal then 10 characters']
     },
     date: Date,
-    slug: String,
+    time: String,
+   
     dateCreated: {
         type: Date,
         default: Date.now(),
@@ -43,12 +44,6 @@ const schema = new Schema<Session>({
     }
 )
 
-schema.index({ slug: 1 });
-
-schema.pre('save', function (next) {
-    this.slug = slug(this.title, { lower: true });
-    next();
-});
 
 schema.pre(/^find/, function (next) {
     this.populate({
