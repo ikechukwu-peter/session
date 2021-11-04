@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\pete\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add slugify
+  C:\Program Files\nodejs\node.exe C:\Users\pete\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add query-string
 
 PATH: 
-  C:\Users\pete\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\pete\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs\node.exe;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\pete\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pete\AppData\Local\Microsoft\WindowsApps;C:\Program Files\nodejs\node.exe;C:\Users\pete\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\pete\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\pete\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs\node.exe;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\pete\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pete\AppData\Local\Microsoft\WindowsApps;C:\Users\pete\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.10
@@ -26,7 +26,9 @@ npm manifest:
     "scripts": {
       "start": "node dist/server.js",
       "dev": "nodemon --exec npx ts-node src/server.ts",
-      "build": "tsc -p ."
+      "build": "tsc -p .",
+      "postinstall": "yarn run build",
+      "deploy": "git add . && git commit -m Heroku && git push heroku master"
     },
     "repository": "https://github.com/ikechukwu-peter/session.git",
     "author": "Ikechukwu Peter",
@@ -45,7 +47,8 @@ npm manifest:
       "mongoose": "^5.13.5",
       "passport": "^0.4.1",
       "passport-jwt": "^4.0.0",
-      "randity": "^1.0.3"
+      "randity": "^1.0.3",
+      "xss-clean": "^0.1.1"
     },
     "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
@@ -60,6 +63,9 @@ npm manifest:
       "nodemon": "^2.0.12",
       "ts-node": "^10.1.0",
       "typescript": "^4.3.5"
+    },
+    "engines": {
+      "node": "16.5.0"
     }
   }
 
@@ -1825,6 +1831,18 @@ Lockfile:
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
     integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
+  
+  xss-clean@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/xss-clean/-/xss-clean-0.1.1.tgz#d3ba684d85ccd52054963d01ad6ab36d662db1a5"
+    integrity sha1-07poTYXM1SBUlj0BrWqzbWYtsaU=
+    dependencies:
+      xss-filters "1.2.6"
+  
+  xss-filters@1.2.6:
+    version "1.2.6"
+    resolved "https://registry.yarnpkg.com/xss-filters/-/xss-filters-1.2.6.tgz#68b39089cb1dff8b9dbc889484839b2f507f5c55"
+    integrity sha1-aLOQicsd/4udvIiUhIObL1B/XFU=
   
   yn@3.1.1:
     version "3.1.1"

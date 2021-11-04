@@ -1,4 +1,3 @@
-import {Request} from 'express';
 import { Strategy, ExtractJwt } from 'passport-jwt'
 import mongoose from 'mongoose'
 

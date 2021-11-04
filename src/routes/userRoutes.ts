@@ -13,11 +13,12 @@ router.post(
 )
 
 router.patch(
-    '/resetpassword', passport.authenticate('jwt', {session: false}), resetPassword
+    '/resetpassword', passport.authenticate('jwt', { session: false }), resetPassword
 )
 
 router.patch(
     '/forgotpassword', forgotPassword
 )
+
 
 export default router;

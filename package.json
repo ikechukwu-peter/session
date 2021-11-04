@@ -26,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
     "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
     "passport-jwt": "^4.0.0",
     "randity": "^1.0.3",
     "xss-clean": "^0.1.1"
@@ -39,6 +40,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^16.4.11",
     "@types/passport": "^1.0.7",
+    "@types/passport-facebook": "^2.1.11",
     "@types/passport-jwt": "^3.0.6",
     "nodemon": "^2.0.12",
     "ts-node": "^10.1.0",

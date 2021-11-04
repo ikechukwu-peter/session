@@ -37,6 +37,11 @@ authenticate(passport)
 app.use(cors());
 
 // 3) ROUTES
+//Respond to ping
+app.get('/', (req:Request, res: Response) => [
+  res.send('Pong')
+])
+
 app.use("/users", userRouter);
 app.use("/session", sessionRouter);
 app.use("/admin", adminRouter)
