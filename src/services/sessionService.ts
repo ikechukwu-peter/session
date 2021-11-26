@@ -5,8 +5,7 @@ let createSessionService = async (sessionData: any, userObject: any) => {
     const { title, body, date, time } = sessionData;
     
     console.log(title, body, date, time)
-    console.log(sessionData.title)
-    const user = userObject.id
+      const user = userObject.id
     try {
         if(!title || !body || !date || !time){
             return Promise.reject('Title, body, date and time is compulsory')
