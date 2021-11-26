@@ -4,7 +4,7 @@ import { getAll, getOne, deleteOne, updateOne } from '../util/handler'
 let createSessionService = async (sessionData: any, userObject: any) => {
     const { title, body, date, time } = sessionData;
     
-    console.log(sessionData)
+    console.log(title, body, date, time)
     const user = userObject.id
     try {
         if(!title || !body || !date || !time){
