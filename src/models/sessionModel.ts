@@ -27,8 +27,8 @@ const schema = new Schema<Session>({
     body: {
         type: String,
         required: [true, "A session must have a body"],
-        maxlength: [400, 'A session title must have less or equal then 400 characters'],
-        minlength: [50, 'A session title must have more or equal then 10 characters']
+        maxlength: [400, 'A session body must have less or equal then 400 characters'],
+        minlength: [50, 'A session body must have more or equal then 10 characters']
     },
     date: Date,
     time: String,
