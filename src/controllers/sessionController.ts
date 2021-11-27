@@ -21,10 +21,11 @@ let getAllSession = getAllSessionService;
 let updateSession = updateSessionService;
 let deleteSession = deleteSessionService;
 
+
 export {
     createSession,
     getSession,
     getAllSession,
     updateSession,
-    deleteSession
-}
+    deleteSession,
+    }
