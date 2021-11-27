@@ -4,7 +4,7 @@ import sessionModel from '../models/sessionModel'
 let checkUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!(req.user.role === 'client')) {
-            res.status(403).json({ warning: 'You are not allowed to access this functionality' })
+            res.status(403).json({ err: 'You are not allowed to access this functionality' })
         } else {
             next()
         }
@@ -15,7 +15,7 @@ let checkUser = async (req: Request, res: Response, next: NextFunction) => {
 let checkAdmin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!(req.user.role === 'admin')) {
-            res.status(403).json({ warning: 'You are not allowed to access this functionality' })
+            res.status(403).json({ err: 'You are not allowed to access this functionality' })
         } else {
             next()
         }
@@ -30,7 +30,7 @@ let checkUserSession = async (req: Request, res: Response, next: NextFunction) =
         let session = await sessionModel.findById(req.params.id)
 
         if (!(JSON.stringify(req.user) === JSON.stringify(session?.user))) {
-            res.status(403).json({ warning: 'Nice try' })
+            res.status(403).json({ err: 'YOU ARE FORBIDDEN' })
         } else {
             next()
         }
