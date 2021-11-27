@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const passport_1 = __importDefault(require("passport"));
+const checkRole_1 = require("../util/checkRole");
+const sessionController_1 = require("../controllers/sessionController");
+const adminController_1 = require("../controllers/adminController");
+const router = express_1.default.Router();
+router.get('/getuser/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, adminController_1.getUser);
+router.get('/getusers', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, adminController_1.getUsers);
+router.put('/updateuser/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, adminController_1.updateUser);
+router.delete('/deleteuser/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, adminController_1.deleteUser);
+router.get('/adminget/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, sessionController_1.getSession);
+router.get('/admingetall', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, sessionController_1.getAllSession);
+router.put('/adminupdate/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, sessionController_1.updateSession);
+router.delete('/admindelete/:id', passport_1.default.authenticate('jwt', { session: false }), checkRole_1.checkAdmin, sessionController_1.deleteSession);
+exports.default = router;
