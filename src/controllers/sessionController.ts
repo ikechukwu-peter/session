@@ -6,6 +6,7 @@ import {
 } from '../services/sessionService';
 
 let createSession = async (req: Request, res: Response) => {
+    console.log(req.body)
     try {
         const sessionData = await createSessionService(req.body, req.user)
     return res.status(201).json(sessionData)

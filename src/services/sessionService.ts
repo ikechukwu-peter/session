@@ -3,7 +3,9 @@ import { getAll, getOne, deleteOne, updateOne } from '../util/handler'
 
 let createSessionService = async (sessionData: any, userObject: any) => {
     const { title, body, date, time } = sessionData;
-    const user = userObject.id
+    
+    console.log(title, body, date, time)
+      const user = userObject.id
     try {
       const session = await sessionModel.create({ user, title, body, date, time })
         return Promise.resolve(session)
