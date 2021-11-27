@@ -23,7 +23,7 @@ export const validateBooking = [
         const hasError = !error.isEmpty();
 
         if (hasError) {
-            res.status(422).json({ error: error.mapped() });
+            res.status(422).json({ error: error.array() });
         } else {
             next();
         }
