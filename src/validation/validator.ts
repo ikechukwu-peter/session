@@ -1,6 +1,31 @@
 import { Request, Response, NextFunction } from 'express'
 import { check, validationResult } from 'express-validator';
 
+
+export const validateUserLogin = [
+    check('email')
+        .trim()
+        .normalizeEmail()
+        .not()
+        .isEmpty()
+        .withMessage('Invalid email address!')
+        .bail(),
+    check("password")
+        .isLength({ min: 4})
+        .withMessage("your password should have a length of 4"),
+    (req: Request, res: Response, next: NextFunction) => {
+        const error = validationResult(req).formatWith(({ msg }) => msg);
+
+        const hasError = !error.isEmpty();
+
+        if (hasError) {
+            res.status(422).json({ error: error.mapped() });
+        } else {
+            next();
+        }
+    },
+];
+
 export const validateBooking = [
     check("title")
         .escape()

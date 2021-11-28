@@ -55,10 +55,7 @@ let loginService = async (userData: any) => {
 
     const { email, password, } = userData;
     try {
-        if (!email || !password) {
-            return Promise.reject('Please provide email and password')
-        }
-        // 2) Check if user exists && password is correct
+             // 1) Check if user exists && password is correct
         const user = await userModel.findOne({ email }).select("+password");
 
         if (user === null || !(await user.comparePassword(password, user.password))) {

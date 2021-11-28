@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import { signup, login, resetPassword, forgotPassword } from '../controllers/authController';
-
+import {validateUserLogin} from '../validation/validator'
 const router = express.Router();
 
 router.post(
@@ -9,7 +9,7 @@ router.post(
 )
 
 router.post(
-    '/login', login
+    '/login', validateUserLogin,  login
 )
 
 router.patch(
