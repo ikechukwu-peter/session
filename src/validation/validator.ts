@@ -17,13 +17,18 @@ export const validateBooking = [
         .isEmpty()
         .isLength({ min: 50, max: 400 })
         .withMessage("your message should be between 50-400 characters"),
-      (req: Request, res: Response, next: NextFunction) => {
+    check("date")
+        .not()
+        .isEmpty()
+        .withMessage('You must provide a date and time!')
+        .bail(),
+    (req: Request, res: Response, next: NextFunction) => {
         const error = validationResult(req).formatWith(({ msg }) => msg);
 
         const hasError = !error.isEmpty();
 
         if (hasError) {
-            res.status(422).json({ error: error.mapped() });
+            res.status(422).json({ error: error.array() });
         } else {
             next();
         }
