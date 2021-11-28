@@ -17,7 +17,7 @@ export const validateBooking = [
         .isEmpty()
         .isLength({ min: 50, max: 400 })
         .withMessage("your message should be between 50-400 characters"),
-    check("date")
+    check("datetime")
         .not()
         .isEmpty()
         .withMessage('You must provide a date and time!')

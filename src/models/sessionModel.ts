@@ -24,9 +24,16 @@ const schema = new Schema<Session>({
     body: {
         type: String,
     },
-    date: Date,
-    time: String,
-   
+    date: {
+        type: Date,
+        required: true
+    },
+
+    time: {
+        type: String,
+        required: true
+    },
+
     dateCreated: {
         type: Date,
         default: Date.now(),

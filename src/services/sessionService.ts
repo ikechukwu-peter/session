@@ -2,10 +2,9 @@ import sessionModel from '../models/sessionModel';
 import { getAll, getOne, deleteOne, updateOne } from '../util/handler'
 
 let createSessionService = async (sessionData: any, userObject: any) => {
-  const { title, body, date } = sessionData;
+  const { title, body, datetime } = sessionData;
 
   let now = new Date()
-  console.log(now)
 
   let day = now.getDate()
 
@@ -15,17 +14,16 @@ let createSessionService = async (sessionData: any, userObject: any) => {
 
   let today = `${year}-${month}-${day}`
 
-  let dateOnly = date.split('T')[0]
-  let timeOnly = date.split('T')[1]
+  let date = datetime.split('T')[0]
+  let time = datetime.split('T')[1]
 
-  console.log(title, body, dateOnly, timeOnly)
-
-  if (dateOnly < today) {
+  if (date < today) {
     return Promise.reject({ err: "Date is in the past" })
   } else {
     const user = userObject.id
     try {
-      const session = await sessionModel.create({ user, title, body, dateOnly, timeOnly })
+      const session = await sessionModel.create({ user, title, body, date, time })
+      console.log(session)
       return Promise.resolve(session)
     } catch (err) {
       return Promise.reject(err)
