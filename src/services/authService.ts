@@ -24,13 +24,13 @@ let registerService = async (userData: any) => {
             password,
             role
         })
-        const message = `You have just signed up for a session , here is your password ${password}. \nIf you didn't sign up for a Session, please ignore this email.`;
-        const html = `<strong>You have just signed up for a Session, here is your password ${password}. \n <br /> If you didn't sign up for a Session,  please ignore this email.</strong>`;
+        const message = `You have just signed up  on Crebb , here is your password ${password}. \nIf you didn't sign up  on Crebb, please ignore this email.`;
+        const html = `<strong>You have just signed up on Crebb, here is your password ${password}. \n <br /> If you didn't sign up on Crebb,  please ignore this email.</strong>`;
 
         //email sent here
         await sendEmail({
             email,
-            subject: " Session, Here is Your Password",
+            subject: " Crebb, Here is Your Password",
             html,
             message,
         });
@@ -97,7 +97,7 @@ let forgotPasswordService = async (email: string) => {
         //email sent here
         await sendEmail({
             email,
-            subject: " Session, Here is Your Password ",
+            subject: "Crebb, Here is Your Password ",
             html,
             message,
         });
@@ -133,7 +133,7 @@ let resetPasswordService = async (password: string, userData: any) => {
     //email sent here
     await sendEmail({
         email,
-        subject: " Session, Here is Your Password after Reset",
+        subject: " Crebb, Here is Your Password after Reset",
         html,
         message,
     });
