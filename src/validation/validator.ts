@@ -28,7 +28,7 @@ export const validateBooking = [
         const hasError = !error.isEmpty();
 
         if (hasError) {
-            res.status(422).json({ error: error.array() });
+            res.status(422).json({ err: error.array() });
         } else {
             next();
         }
