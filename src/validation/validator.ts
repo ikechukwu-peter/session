@@ -19,7 +19,7 @@ export const validateUserLogin = [
         const hasError = !error.isEmpty();
 
         if (hasError) {
-            res.status(422).json({ error: error.mapped() });
+            res.status(422).json({ err: error.mapped() });
         } else {
             next();
         }
